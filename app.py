@@ -1,3 +1,9 @@
+import sys
+import os
+
+# 关键：把 engine 目录加入 Python 搜索路径，解决所有内部导入问题
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'engine'))
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from engine.draft_generator import DraftGenerator
@@ -7,7 +13,7 @@ app = FastAPI(title="OpenDraft API")
 
 class DraftRequest(BaseModel):
     topic: str
-    paper_type: str = "master"    # research_paper, bachelor, master, phd
+    paper_type: str = "master"
     language: str = "en"
 
 class DraftResponse(BaseModel):
