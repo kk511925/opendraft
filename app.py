@@ -1,13 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from engine.draft_generator import DraftGenerator
-import uvicorn, os
+import uvicorn
 
 app = FastAPI(title="OpenDraft API")
 
 class DraftRequest(BaseModel):
     topic: str
-    paper_type: str = "master"
+    paper_type: str = "master"    # research_paper, bachelor, master, phd
     language: str = "en"
 
 class DraftResponse(BaseModel):
